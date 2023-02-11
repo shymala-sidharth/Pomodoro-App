@@ -11,7 +11,7 @@ export default function Home() {
 
   function startTimer() {
     if (timerRunning) {
-      return
+      return timerRunning
     }
     setTimerRunning(true)
 
@@ -22,9 +22,11 @@ export default function Home() {
           stopTimer()
         }
         return newTime
+        console.log(newTime)
       })
     }, 1000)
     setIntervalId(id)
+    console.log(id)
   }
 
   function stopTimer() {
@@ -32,6 +34,7 @@ export default function Home() {
       return
     }
     clearInterval(intervalId)
+    console.log(clearInterval)
     setTimerRunning(false)
   }
 
@@ -71,21 +74,42 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Pomodoro App</title>
+        <title>Pomodoro</title>
       </Head>
-      <main>
-        <h1>Pomodoro App</h1>
-
+      <main className="bg-gray-900 min-h-screen">
         <div>
-          <h2>
-            {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-          </h2>
+          <div className="flex justify-center text-white text-9xl font-bold p-20">
+            <h2>
+              {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+            </h2>
+          </div>
+          <div className="flex flex-row gap-5 justify-center">
+            <button
+              className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              onClick={startTimer}
+            >
+              Start
+            </button>
+            <button
+              className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              onClick={stopTimer}
+            >
+              Stop/Pause
+            </button>
+            <button
+              className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              onClick={resumeTimer}
+            >
+              Resume
+            </button>
+            <button
+              className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              onClick={resetTimer}
+            >
+              Reset
+            </button>
+          </div>
         </div>
-
-        <button onClick={startTimer}>Start</button>
-        <button onClick={stopTimer}>Stop/Pause</button>
-        <button onClick={resumeTimer}>Resume</button>
-        <button onClick={resetTimer}>Reset</button>
       </main>
     </>
   )
