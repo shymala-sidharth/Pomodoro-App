@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react'
+import Navigation from './components/Navigation'
+import Timer from './components/Timer'
 
 export default function Home() {
   const [timeRemaining, setTimeRemaining] = useState(25 * 60)
@@ -76,16 +78,21 @@ export default function Home() {
       <Head>
         <title>Pomodoro</title>
       </Head>
-      <main className="bg-gray-900 min-h-screen">
+
+      <main className="bg-teal-900 min-h-screen">
         <div>
-          <div className="flex justify-center text-white text-9xl font-bold p-20">
+          <Navigation />
+          <Timer />
+        </div>
+        <div>
+          <div className="flex justify-center mx-auto text-white text-9xl font-bold p-20">
             <h2>
               {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
             </h2>
           </div>
           <div className="flex flex-row gap-5 justify-center">
             <button
-              className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              className="text-white text-2xl bg-gradient-to-r from-lime-500 via-lime-600 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2"
               onClick={startTimer}
             >
               Start
